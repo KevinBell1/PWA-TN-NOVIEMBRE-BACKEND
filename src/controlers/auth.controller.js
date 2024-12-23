@@ -72,7 +72,7 @@ export const registerController = async (req, res) =>{
     
     )
 
-    const redirectUrl = `http://localhost:3000/api/auth/verify-email/` + validation_token
+    const redirectUrl = `${ENVIROMENT.URL_FRONTEND}/api/auth/verify-email/` + validation_token
 
     const result = await transporterEmail.sendMail({
         subject: 'Valida tu email',
