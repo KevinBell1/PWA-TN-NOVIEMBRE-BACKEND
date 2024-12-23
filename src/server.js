@@ -23,7 +23,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/products', productRouter)
 
 app.use(errorHandlerMiddelware)
-
+//aa
 app.listen(PORT, () =>{
     console.log(`el servidor se esta ejecutando en http://localhost:${PORT}`)
 })
