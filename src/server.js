@@ -7,26 +7,27 @@ import errorHandlerMiddelware from './middlewares/errorHandler.middleware.js'
 import pool from './config/dbMysql.config.js'
 import ProductRepostory from './repositories/product.repository.js'
 import mongoose from './config/db.config.js'
+import { customCorsMiddleware } from './middlewares/cors.middleware.js'
 
 const PORT=3000
 const app = express()
 
-app.get('/ping', (req, res) => res.json({status: 200, message: 'hola mundo'}))
+app.use(customCorsMiddleware)
 
-app.use(express.json({limit: '3mb'})) //si no configuramos esto express va a recibir mas informacion de la necesaria y en ciertas imagenes las rechazara
 app.use(cors())
+app.use(express.json({limit: '3mb'})) //si no configuramos esto express va a recibir mas informacion de la necesaria y en ciertas imagenes las rechazara
 
-pool
 
 app.use('/api/status', statusRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/products', productRouter)
 
+app.use(errorHandlerMiddelware)
 
 app.listen(PORT, () =>{
     console.log(`el servidor se esta ejecutando en http://localhost:${PORT}`)
 })
-app.use(errorHandlerMiddelware)
+
 /* en caso de error de CORS instalar la libreria de cors y en la app
 
 import cors from 'cors'
