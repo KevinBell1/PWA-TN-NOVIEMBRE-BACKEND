@@ -1,6 +1,7 @@
 //npm i mysql2
 import mysql from 'mysql2/promise'
 import ENVIROMENT from './enviroment.js'
+import { connect, connection } from 'mongoose'
 
 const pool =mysql.createPool(
     {
